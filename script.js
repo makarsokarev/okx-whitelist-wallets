@@ -2,25 +2,23 @@
   const wallets = [
     ""];
 
-  const names = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"];
-
   const walletSelectors = [];
   const nameSelectors = [];
 
-  for (let i = 3; i <= 98; i += 5) {
+  for (let i = 2; i <= 21; i++ ) {
     walletSelectors.push(
-    `#scroll-box > div > div > form > div:nth-child(6) > div > div > div > div > div:nth-child(${i}) > div.balance_okui-form-item-control > div > div > div > div > input.balance_okui-input-input`
+      `#root > div > div > div.balance-bottom > div > form > div.addressListWrap > div > div > div > div.balance_okui-table-content > table > tbody > tr:nth-child(${i}) > td:nth-child(2) > div.balance_okui.AddressInput_addressInputWrap__dzvve.balance_okui-form-item-md.balance_okui-form-item.balance_okui-form-item-no-label > div > div > div > div > div > input.balance_okui-input-input`
     );
   }
 
-  for (let i = 5; i <= 100; i += 5) {
+  for (let i = 2; i <= 21; i++ ) {
     nameSelectors.push(
-    `#scroll-box > div > div > form > div:nth-child(6) > div > div > div > div > div:nth-child(${i}) > div.balance_okui-form-item-control > div > div > div > div > input.balance_okui-input-input`
+      `#root > div > div > div.balance-bottom > div > form > div.addressListWrap > div > div > div > div.balance_okui-table-content > table > tbody > tr:nth-child(${i}) > td:nth-child(3) > div > div > div > div > div > div > input.balance_okui-input-input`
     );
   }
 
   const addButtonSelector =
-    "#scroll-box > div > div > form > div:nth-child(6) > div > div > div > div > div.add-address-form-btn";
+    "#root > div > div > div.balance-bottom > div > form > button";
 
   function fillInput(input, value) {
     input.setAttribute('value', value);
@@ -37,10 +35,10 @@
       fillInput(addressInput, wallets[i]);
       await new Promise((resolve) => setTimeout(resolve, 300));
 
-      if (names.length > 0) {
-        fillInput(nameInput, names[i]);
-        await new Promise((resolve) => setTimeout(resolve, 400));
-      }
+      let name = 36 + i
+      fillInput(nameInput, name);
+      await new Promise((resolve) => setTimeout(resolve, 400));
+
 
       if (i < wallets.length - 1) {
         const button = document.querySelector(addButtonSelector);
